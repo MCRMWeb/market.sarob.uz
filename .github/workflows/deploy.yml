@@ -17,3 +17,15 @@ jobs:
           username: ${{ secrets.DEMO_AVTOZAPCHASTI_USER }}
           password: ${{ secrets.DEMO_AVTOZAPCHASTI_PASSWORD }}
           local-dir: ./out/
+      - uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.SERVER }}
+          username: ${{ secrets.AVTOZAPCHASTI_USER }}
+          password: ${{ secrets.AVTOZAPCHASTI_PASSWORD }}
+          local-dir: ./out/
+      - uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.SERVER }}
+          username: ${{ secrets.DEMO_PRODUKTOVIY_USER }}
+          password: ${{ secrets.DEMO_PRODUKTOVIY_PASSWORD }}
+          local-dir: ./out/
