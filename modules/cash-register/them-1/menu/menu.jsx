@@ -1,4 +1,5 @@
 import MenuPageList from "../components/menuPage/MenuPageList";
+import '../Them-1.scss'
 
 export default function page() {
   return (

@@ -4,6 +4,7 @@ import { columns, columnsTable } from "../utils/data";
 import MenuList from "./header/MenuList";
 import { products } from "../utils/data";
 import kassaStore from "@/stores/kassa";
+import '../Them-1.scss';
 
 export default function Table() {
   const {
@@ -121,37 +122,37 @@ export default function Table() {
   }
 
   return (
-    <div className="border border-black min-h-[90vh] relative overflow-hidden">
+    <div className="table border border-black min-h-[90vh] relative overflow-hidden">
       <MenuList />
-      {openPay && <span className="dark fixed top-0 left-0 bg-[#706e6e8f] h-[100vh] w-[100vw] z-[100]"></span>}
+      {openPay && <span className="table__dark fixed top-0 left-0 bg-[#706e6e8f] h-[100vh] w-[100vw] z-[100]"></span>}
       {filteredProducts.length > 0 && (
-        <table className="w-[100%] flex flex-col h-full">
-          <thead className="w-[100%] bg-[#c5eeff]">
-            <tr className="grid grid-cols-4 justify-items-start">
+        <table className="table__table w-[100%] flex flex-col h-full">
+          <thead className="table__head w-[100%] bg-[#c5eeff]">
+            <tr className="table__head-row grid grid-cols-4 justify-items-start">
               {columns?.map((item) => (
-                <th key={item.id} className="text-[16px] font-bold p-[10px]">
+                <th key={item.id} className="table__head-col text-[16px] font-bold p-[10px]">
                   {item.title}
                 </th>
               ))}
             </tr>
           </thead>
-          <tbody>
+          <tbody className="table__body">
             {filteredProducts.map((item, i) => (
               <tr
                 onClick={() => setProducts(item.id)}
                 key={i}
-                className="grid grid-cols-4 border-b border-black cursor-pointer hover:bg-[#bfed6b]"
+                className="table__body-row grid grid-cols-4 border-b border-black cursor-pointer hover:bg-[#bfed6b]"
               >
-                <td className="p-[10px] flex items-center">
+                <td className="table__body-col p-[10px] flex items-center">
                   {item["Наименование"]}
                 </td>
-                <td className="p-[10px] flex items-center">
+                <td className="table__body-col p-[10px] flex items-center">
                   {item["Штрихкод"]}
                 </td>
-                <td className="p-[10px] flex items-center">
+                <td className="table__body-col p-[10px] flex items-center">
                   {item["Количество"]} шт
                 </td>
-                <td className="p-[10px] flex items-center">
+                <td className="table__body-col p-[10px] flex items-center">
                   {item["Цена"]} сум
                 </td>
               </tr>
@@ -160,34 +161,34 @@ export default function Table() {
         </table>
       )}
       {selectedProducts.length > 0 && (
-        <table className="w-[100%] flex flex-col h-full">
-          <thead className="w-[100%] bg-[#c5eeff]">
-            <tr className="grid grid-cols-5 justify-items-start">
+        <table className="foundTable w-[100%] flex flex-col h-full">
+          <thead className="foundTable__head w-[100%] bg-[#c5eeff]">
+            <tr className="foundTable__head-row grid grid-cols-5 justify-items-start">
               {columnsTable?.map((item) => (
-                <th key={item.id} className="text-[16px] font-bold p-[10px]">
+                <th key={item.id} className="foundTable__head-col text-[16px] font-bold p-[10px]">
                   {item.title}
                 </th>
               ))}
             </tr>
           </thead>
-          <tbody>
+          <tbody className="foundTable__body">
             {selectedProducts?.map((item) => (
               <tr
                 key={item.id}
-                className="grid grid-cols-5 border-b border-black cursor-pointer bg-[#bfed6b]"
+                className="foundTable__body-row grid grid-cols-5 border-b border-black cursor-pointer bg-[#bfed6b]"
               >
-                <td className="p-[10px] flex items-center name">
+                <td className="foundTable__body-col name p-[10px] flex items-center">
                   {item["Наименование"]}
                 </td>
-                <td className="p-[10px] flex items-center">
+                <td className="foundTable__body-col p-[10px] flex items-center">
                   {item["Штрихкод"]}
                 </td>
-                <td className="p-[10px] flex items-center">
-                  <div className="border border-black flex justify-between items-center gap-[5px] p-[5px]">
+                <td className="foundTable__body-col p-[10px] flex items-center">
+                  <div className="foundTable__body-counter border border-black flex justify-between items-center gap-[5px] p-[5px]">
                     <button
                       onClick={(e) => countProduct(e)}
                       data-symbol="-"
-                      className="border border-black w-[30px] h-[15px] flex items-center justify-center bg-[#f7b279]"
+                      className="foundTable__counter-minus border border-black w-[30px] h-[15px] flex items-center justify-center bg-[#f7b279]"
                     >
                       -
                     </button>
@@ -195,30 +196,30 @@ export default function Table() {
                       min={1}
                       max={item["Количество"]}
                       type="number"
-                      className="max-w-[70px] w-full text-center amount"
+                      className="foundTable__counter-input amount max-w-[70px] w-full text-center"
                       value={amounts[item["Наименование"]] || amountChose}
                       readOnly
                     />
                     <button
                       onClick={(e) => countProduct(e)}
                       data-symbol="+"
-                      className="border border-black w-[30px] h-[15px] flex items-center justify-center bg-[#89e373]"
+                      className="foundTable__counter-plus border border-black w-[30px] h-[15px] flex items-center justify-center bg-[#89e373]"
                     >
                       +
                     </button>
                   </div>
                 </td>
                 <td
-                  className="p-[10px] flex items-center price"
+                  className="foundTable__body-col p-[10px] flex items-center price"
                   data-price={item["Цена"]}
                 >
                   {item["Цена"]}
                   <span>сум</span>
                 </td>
-                <td className="p-[10px] flex items-center relative">
+                <td className="foundTable__body-col p-[10px] flex items-center relative">
                   {totalAmounts[item["Наименование"]]}
                   <span>сум</span>
-                  <button onClick={() => delProduct(item.id, item["Наименование"])} className="del p-[5px_10px] border border-black bg-[#d67878e9] cursor-pointer absolute top-[10px] right-[10px]" >X</button>
+                  <button onClick={() => delProduct(item.id, item["Наименование"])} className="foundTable__body-del p-[5px_10px] border border-black bg-[#d67878e9] cursor-pointer absolute top-[10px] right-[10px]" >X</button>
                 </td>
               </tr>
             ))}
