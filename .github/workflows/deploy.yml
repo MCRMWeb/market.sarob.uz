@@ -1,31 +1,20 @@
 name: Deploy
-on: [push,workflow_dispatch]
+on:
+  push:
+    branches:
+      - main
+
 jobs:
   deploy:
+    name: Deploy 
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Deploy React
+        uses: appleboy/ssh-action@v1.0.3
         with:
-          node-version: '20'
-      - run: |
-          npm ci
-          npm run build
-      - uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.SERVER }}
-          username: ${{ secrets.DEMO_AVTOZAPCHASTI_USER }}
-          password: ${{ secrets.DEMO_AVTOZAPCHASTI_PASSWORD }}
-          local-dir: ./out/
-      - uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.SERVER }}
-          username: ${{ secrets.AVTOZAPCHASTI_USER }}
-          password: ${{ secrets.AVTOZAPCHASTI_PASSWORD }}
-          local-dir: ./out/
-      - uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.SERVER }}
-          username: ${{ secrets.DEMO_PRODUKTOVIY_USER }}
-          password: ${{ secrets.DEMO_PRODUKTOVIY_PASSWORD }}
-          local-dir: ./out/
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd projects/mcrm/static/avto-zapchasti.uz
+            git pull  
