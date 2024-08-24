@@ -1,1 +1,0 @@
-import{z as t,A as i,B as r}from"./index-A0-ZeqCL.js";const o=t()(i(r(s=>({user:null,isAuth:!1,profileLinkActive:"Мои заказы",signinTemplateCheckbox:!1,setSigninTemplateCheckbox:e=>s({signinTemplateCheckbox:e}),setProfileLinkActive:e=>s({profileLinkActive:e}),setUser:e=>s({user:e,isAuth:!0}),logout:()=>s({user:null,isAuth:!1})}),{name:"user-storage"}))),n=o;export{n as u};
