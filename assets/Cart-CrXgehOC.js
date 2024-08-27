@@ -1,1 +1,0 @@
-import{j as r}from"./index-Ixb8NsxD.js";const t="_wrapper_bxg95_1",p="_wrapper_title_bxg95_4",e={wrapper:t,wrapper_title:p};function s(){return r.jsx(r.Fragment,{children:r.jsx("div",{className:e.wrapper,children:r.jsx("h2",{className:e.wrapper_title,children:"Корзина"})})})}export{s as default};
