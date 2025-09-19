@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy market.sarob.uz
 on:
   push:
     branches:
@@ -8,12 +8,14 @@ jobs:
     name: Deploy 
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy React
+      - name: Deploy market.sarob.uz
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.PORT }}
           script: |
-            cd projects/mcrm/static/avto-zapchasti.uz
+            cd ${{ vars.PROJECT_PATH }}
+            git reset --hard
             git pull  
